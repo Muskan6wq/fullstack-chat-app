@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import express from "express";
 import { connectDB } from "./lib/db.js";
 
+import path from "path";
 import { app, server } from "./lib/socket.js";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
@@ -14,6 +15,7 @@ dotenv.config();
 
 
 const PORT = process.env.PORT
+const __dirname = path.resolve();
 
 app.use(express.json());//middleware ,allow us to extract data out of body
 app.use(cookieParser());
@@ -25,6 +27,10 @@ app.use(
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+}
 
 server.listen(PORT, () => {
     console.log("server is running on port :" + PORT);
