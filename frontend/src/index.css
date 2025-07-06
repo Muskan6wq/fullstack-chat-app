@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Force Tailwind to preserve theme-related classes */
+@layer utilities {
+    .force-colors {
+        @apply bg-primary text-primary-content bg-secondary text-secondary-content bg-accent text-accent-content bg-neutral;
+    }
+}
