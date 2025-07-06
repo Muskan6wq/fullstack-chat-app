@@ -6,7 +6,7 @@ import express from "express";
 import { connectDB } from "./lib/db.js";
 
 import path from "path";
-import { app, server } from "./lib/socket.js";
+import { server } from "./lib/socket.js";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 
@@ -18,6 +18,7 @@ const PORT = process.env.PORT
 const __dirname = path.resolve();
 
 const app = express();
+
 app.use(express.json());//middleware ,allow us to extract data out of body
 app.use(cookieParser());
 app.use(
